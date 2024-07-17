@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      background-image: url(backkk.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 30px;
+      transition: 1s ease;
+      animation: animate 2s infinite;
+    }
+
+    @keyframes animate {
+      0% {
+        font-size: 30px;
+        color: goldenrod;
+      }
+      25% {
+        font-size: 35px;
+        color: #f012be;
+      }
+      75% {
+        font-size: 35px;
+        color: #39cccc;
+      }
+      100% {
+        font-size: 30px;
+        color: goldenrod;
+      }
+    }
+
+    #formData {
+      margin-top: 100px;
+      color: white;
+      font-size: 25px;
+      text-align: center;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+  </style>
+  <body>
+    <h1>Form Submitted Successfully</h1>
+    <hr />
+    <div id="formData"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const formData = JSON.parse(localStorage.getItem("contactFormData"));
+
+        if (formData) {
+          const showFormData = document.getElementById("formData");
+          showFormData.innerHTML = `
+                    <p><strong>Name:</strong> ${formData.name}</p>
+                    <p><strong>Email:</strong> ${formData.email}</p>
+                    <p><strong>Phone:</strong> ${formData.phone}</p>
+                    <p><strong>City:</strong> ${formData.city}</p>
+                    <p><strong>Message:</strong> ${formData.message}</p>
+                `;
+        } else {
+          showFormData.innerHTML = "<p>Opps! No Data Found.</p>";
+        }
+      });
+      
+    </script>
+  </body>
+</html>
