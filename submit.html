@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<style>
+    body {
+    background-image: url(backiee-277078-landscape.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-image: url(ghost.jpg);
+    width: 30%;
+    height: 65%;
+    max-width: 800px;
+    background-repeat: no-repeat;
+    background-size: cover;  
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.social-icons {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.social-icons i {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+i.fa-facebook{
+    color: blue;
+    background-color: white;
+    border-radius: 50%;
+}
+
+i.fa-instagram{
+    color: purple;
+    background-color: white;
+    border-radius: 50%;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+}
+
+#form input, #form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    color: white;
+}
+
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.row input {
+    width: 32%;
+}
+
+#form button {
+    position: relative;
+    top: 10px;
+    padding: 10px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: 1s ease;
+    animation: animate 4s;
+}
+
+#form button:hover {
+    background: goldenrod;
+    color: black;
+    transition: 1s ease;
+}
+
+@keyframes animate {
+    0%{
+        left: 0px;
+        background-color:red;
+    }
+    25%{
+        left: 30px;
+        background-color: goldenrod;
+    }
+    75%{
+        left: 0px;
+        background-color: goldenrod;
+    }
+    100%{
+        rigt: 30px;
+        background-color: red;
+    }
+}
+
+
+</style>
+<body>
+    <div class="container">
+        <h1>Get Connected</h1>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        </div>
+        <form id="form">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <div class="row">
+                <input type="text" id="phone" placeholder="Phone" required>
+                <input type="text" id="city" placeholder="City" required>
+            </div>
+            <textarea id="message" placeholder="Message" rows="9"  required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+
+    document.getElementById('form').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const city = document.getElementById('city').value;
+    const message = document.getElementById('message').value;
+
+    const formData = {
+        name,
+        email,
+        phone,
+        city,
+        message
+    };
+    
+
+    localStorage.setItem('contactFormData', JSON.stringify(formData));
+
+    alert('Form Submitted successfully!');
+
+    window.location.href = 'submitted.html';
+
+    // document.getElementById('form').reset();
+});
+    </script>
+</body>
+</html>
