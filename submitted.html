@@ -47,13 +47,48 @@
       font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
         "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     }
+
+    a {
+      color: wheat;
+      text-decoration: none;
+      font-size: 18px;
+      text-align: center;
+      margin-left: 45.5%;
+      border: 1px solid white;
+      background-color: red;
+      border-radius: 16px;
+      padding: 3px 10px;
+      transition: 1s ease;
+    }
+
+    a:hover {
+      background-color: white;
+      color: red;
+      transition: 1s ease;
+    }
+
+    #myVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
   </style>
   <body>
+    <video autoplay muted loop id="myVideo">
+      <source src="water.mp4" type="video/mp4" />
+    </video>
     <h1>Form Submitted Successfully</h1>
     <hr />
     <div id="formData"></div>
+    <div><a href="submit.html">Back to Home</a></div>
 
     <script>
+  
       document.addEventListener("DOMContentLoaded", function () {
         const formData = JSON.parse(localStorage.getItem("contactFormData"));
 

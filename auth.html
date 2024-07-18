@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.container {
+    width: 300px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form button {
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background: #218838;
+}
+
+.form p {
+    text-align: center;
+}
+
+.form p span {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.form p span:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+</style>
+
+<body>
+    <div class="container">
+        <div id="form-container">
+            <form id="login-form" class="form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="button" onclick="login()">Login</button>
+                <p>Don't have an account? <span onclick="showSignup()">Sign up</span></p>
+            </form>
+            
+            <form id="signup-form" class="form hidden">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-username" placeholder="Username" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button type="button" onclick="signup()">Sign Up</button>
+                <p>Already have an account? <span onclick="showLogin()">Login</span></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        
+        function showSignup() {
+    document.getElementById('login-form').classList.add('hidden');
+    document.getElementById('signup-form').classList.remove('hidden');
+}
+
+function showLogin() {
+    document.getElementById('signup-form').classList.add('hidden');
+    document.getElementById('login-form').classList.remove('hidden');
+}
+
+function signup() {
+    const username = document.getElementById('signup-username').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+
+    
+    if (username && email && password) {
+        
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        users.push({ username, email, password });
+        localStorage.setItem('users', JSON.stringify(users));
+        alert('Signup successful! Please login.');
+        showLogin();
+    } else {
+        alert('Please fill all fields');
+    }
+}
+
+function login() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(user => user.email === email && user.password === password);
+
+    if (user) {
+        alert('Login successful!');
+        
+    } else {
+        alert('Invalid email or password');
+    }
+}
+
+    </script>
+</body>
+</html>
